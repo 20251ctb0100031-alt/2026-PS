@@ -1,8 +1,11 @@
-"""
-INSTITUTO FEDERAL DO PARANÁ - IFPR
-Componente Curricular: Lógica de Programação
-Estudante: Fernando
-"""
+# ============================================================
+# Nome: Fernando
+# Disciplina: Programação de sistemas
+# Data: 14/03/2026
+# Descrição: Calculadora de notas dos alunos onde o usuário pode inserir o nome do aluno, suas notas, e o sistema irá calcular a média, determinar a situação (Aprovado, Recuperação ou Reprovado)
+# ============================================================
+
+
 
 # --- DEFINIÇÃO DAS FUNÇÕES ---
 
