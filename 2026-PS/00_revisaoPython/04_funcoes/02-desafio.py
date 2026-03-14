@@ -1,8 +1,7 @@
 """
 INSTITUTO FEDERAL DO PARANÁ - IFPR
 Componente Curricular: Lógica de Programação
-Estudante: [Seu Nome]
-Nível: Avançado (Conceito A)
+Estudante: Fernando
 """
 
 # --- DEFINIÇÃO DAS FUNÇÕES ---
