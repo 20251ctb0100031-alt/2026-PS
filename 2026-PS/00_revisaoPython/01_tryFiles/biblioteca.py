@@ -133,7 +133,7 @@ def menu():
         else:
             # Executado SOMENTE quando try termina sem exceção
             if escolha == "0":
-                print("\n  Até logo! 👋")
+                print("\n  Até logo! 📚")
                 break
             
             _, funcao = opcoes[escolha]
