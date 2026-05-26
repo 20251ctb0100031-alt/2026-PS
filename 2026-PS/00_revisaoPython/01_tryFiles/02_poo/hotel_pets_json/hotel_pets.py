@@ -5,13 +5,15 @@ ARQUIVO_JSON = "pets.json"
 
 
 class Pet:
-    def __init__(self, nome, especie, idade, peso, nome_dono, vacinado, hospedado=False):
+    def __init__(self, nome, especie, idade, altura, peso, nome_dono, vacinado,data_nascimento, hospedado=False):
         self.nome = nome
         self.especie = especie
         self.idade = idade
         self.peso = peso
+        self.altura = altura
         self.nome_dono = nome_dono
         self.vacinado = vacinado
+        self.data_nascimento = data_nascimento
         self.hospedado = hospedado
 
     def exibir_dados(self):
@@ -19,9 +21,11 @@ class Pet:
         print(f"Nome: {self.nome}")
         print(f"Espécie: {self.especie}")
         print(f"Idade: {self.idade}")
+        print(f"Altura: {self.altura} metros")
         print(f"Peso: {self.peso} kg")
         print(f"Dono: {self.nome_dono}")
         print(f"Vacinado: {'Sim' if self.vacinado else 'Não'}")
+        print(f"Data de Nascimento: {self.data_nascimento}")
         print(f"Hospedado: {'Sim' if self.hospedado else 'Não'}")
 
     def registrar_entrada(self):
@@ -49,9 +53,11 @@ class Pet:
             "nome": self.nome,
             "especie": self.especie,
             "idade": self.idade,
+            "altura": self.altura,
             "peso": self.peso,
             "nome_dono": self.nome_dono,
             "vacinado": self.vacinado,
+            "data_nascimento": self.data_nascimento,
             "hospedado": self.hospedado
         }
 
@@ -64,9 +70,11 @@ class Pet:
             dados["nome"],
             dados["especie"],
             dados["idade"],
+            dados["altura"],
             dados["peso"],
             dados["nome_dono"],
             dados["vacinado"],
+            dados["data_nascimento"],
             dados["hospedado"]
         )
 
@@ -115,13 +123,15 @@ def cadastrar_pet(lista_pets):
     nome = input("Nome do pet: ")
     especie = input("Espécie: ")
     idade = int(input("Idade: "))
+    altura = float(input("Altura: "))
     peso = float(input("Peso: "))
     nome_dono = input("Nome do dono: ")
+    data_nascimento = input("Data de nascimento (dd/mm/aaaa): ")
 
     resposta = input("O pet está vacinado? (s/n): ").lower()
     vacinado = resposta == "s"
 
-    pet = Pet(nome, especie, idade, peso, nome_dono, vacinado)
+    pet = Pet(nome, especie, idade, altura, peso, nome_dono, vacinado, data_nascimento)
     lista_pets.append(pet)
 
     print("Pet cadastrado com sucesso!")
@@ -159,13 +169,33 @@ def menu():
             listar_pets(pets)
 
         elif opcao == "3":
+            if not pets:
+                print("Nenhum pet cadastrado.")
+                continue
             listar_pets(pets)
-            numero = int(input("Número do pet: "))
+            try:
+                numero = int(input("Número do pet: "))
+            except ValueError:
+                print("Entrada inválida. Digite um número.")
+                continue
+            if numero < 1 or numero > len(pets):
+                print("Número de pet inválido.")
+                continue
             pets[numero - 1].registrar_entrada()
 
         elif opcao == "4":
+            if not pets:
+                print("Nenhum pet cadastrado.")
+                continue
             listar_pets(pets)
-            numero = int(input("Número do pet: "))
+            try:
+                numero = int(input("Número do pet: "))
+            except ValueError:
+                print("Entrada inválida. Digite um número.")
+                continue
+            if numero < 1 or numero > len(pets):
+                print("Número de pet inválido.")
+                continue
             pets[numero - 1].registrar_saida()
 
         elif opcao == "5":
