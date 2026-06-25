@@ -1,4 +1,4 @@
-public class exercicios {
+ public class aula28{
 
     static double calcularDesconto(double valor, double percentual) {
         return valor - (valor * percentual / 100);
