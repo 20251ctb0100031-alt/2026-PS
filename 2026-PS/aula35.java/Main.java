@@ -77,11 +77,7 @@ public class Main {
         }
 
         for (Produto p : produtos) {
-            System.out.println(
-                p.getCodigo() + " - " +
-                p.getNome() + " - R$ " +
-                p.getPreco()
-            );
+            System.out.println(p);
         }
     }
 
