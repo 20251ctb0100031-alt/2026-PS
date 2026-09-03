@@ -29,22 +29,31 @@ public class Main {
                 int codigo = teclado.nextInt();
                 teclado.nextLine();
 
-                System.out.print("Nome: ");
-                String nome = teclado.nextLine();
+                Produto produtoExistente = buscarPorCodigo(codigo);
 
-                System.out.print("Preço: ");
-                double preco = teclado.nextDouble();
+                if (produtoExistente != null) {
+                    System.out.println("Já existe um produto com esse código.");
+                } else {
 
-                Produto p = new Produto(codigo, nome, preco);
-                produtos.add(p);
+                    System.out.print("Nome: ");
+                    String nome = teclado.nextLine();
+
+                    System.out.print("Preço: ");
+                    double preco = teclado.nextDouble();
+
+                    Produto p = new Produto(codigo, nome, preco);
+                    produtos.add(p);
+
+                    System.out.println("Produto cadastrado com sucesso.");
+                }
 
             } else if (opcao == 2) {
 
                 for (Produto p : produtos) {
                     System.out.println(
-                        p.codigo + " - " +
-                        p.nome + " - R$ " +
-                        p.preco
+                        p.getCodigo() + " - " +
+                        p.getNome() + " - R$ " +
+                        p.getPreco()
                     );
                 }
 
@@ -53,15 +62,18 @@ public class Main {
                 System.out.print("Código: ");
                 int codigo = teclado.nextInt();
 
-                for (Produto p : produtos) {
+                Produto produto = buscarPorCodigo(codigo);
 
-                    if (p.codigo == codigo) {
+                if (produto == null) {
+                    System.out.println("Produto não encontrado.");
+                } else {
 
-                        System.out.print("Novo preço: ");
-                        double preco = teclado.nextDouble();
+                    System.out.print("Novo preço: ");
+                    double preco = teclado.nextDouble();
 
-                        p.preco = preco;
-                    }
+                    produto.alterarPreco(preco);
+
+                    System.out.println("Preço alterado com sucesso.");
                 }
 
             } else if (opcao == 4) {
@@ -69,15 +81,31 @@ public class Main {
                 System.out.print("Código: ");
                 int codigo = teclado.nextInt();
 
-                for (Produto p : produtos) {
+                Produto produto = buscarPorCodigo(codigo);
 
-                    if (p.codigo == codigo) {
-                        produtos.remove(p);
-                    }
+                if (produto == null) {
+                    System.out.println("Produto não encontrado.");
+                } else {
+
+                    produtos.remove(produto);
+
+                    System.out.println("Produto removido com sucesso.");
                 }
             }
         }
 
         System.out.println("Sistema encerrado.");
+    }
+
+    static Produto buscarPorCodigo(int codigo) {
+
+        for (Produto p : produtos) {
+
+            if (p.getCodigo() == codigo) {
+                return p;
+            }
+        }
+
+        return null;
     }
 }
