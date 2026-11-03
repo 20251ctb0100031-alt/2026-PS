@@ -63,10 +63,10 @@ public class LivroDAO {
         }
     }
 
-    // Método da Parte 13 (Aula 43): Listar todos os livros
-    public List<String> listarLivros() {
+    // Método da Parte 15: Listar todos os livros (retornando List<Livro>)
+    public List<Livro> listarLivros() {
 
-        List<String> livros = new ArrayList<>();
+        List<Livro> livros = new ArrayList<>();
 
         String sql =
             "SELECT id, titulo, autor, ano " +
@@ -83,8 +83,7 @@ public class LivroDAO {
                 String autor = resultado.getString("autor");
                 int ano = resultado.getInt("ano");
 
-                String livro = id + " - " + titulo + " - " + autor + " (" + ano + ")";
-
+                Livro livro = new Livro(id, titulo, autor, ano);
                 livros.add(livro);
             }
 
@@ -95,8 +94,8 @@ public class LivroDAO {
         return livros;
     }
 
-    // Método da Parte 14 (Aula 43): Buscar livro por ID
-    public String buscarLivroPorId(int id) {
+    // Método da Parte 15: Buscar livro por ID (retornando Objeto Livro)
+    public Livro buscarLivroPorId(int id) {
 
         String sql =
             "SELECT id, titulo, autor, ano " +
@@ -116,9 +115,7 @@ public class LivroDAO {
                     String autor = resultado.getString("autor");
                     int ano = resultado.getInt("ano");
 
-                    return codigo + " - " +
-                           titulo + " - " +
-                           autor + " (" + ano + ")";
+                    return new Livro(codigo, titulo, autor, ano);
                 }
             }
 

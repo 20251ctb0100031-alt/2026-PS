@@ -8,29 +8,24 @@ public class TesteBuscarLivro {
         LivroDAO dao = new LivroDAO();
 
         System.out.println("=== BUSCAR LIVRO ===");
+        System.out.print("Informe o ID do livro: ");
 
-        int id = -1;
+        int id = entrada.nextInt();
 
-        while (id != 0) {
+        Livro livro = dao.buscarLivroPorId(id);
 
-            System.out.print("\nInforme o ID (0 para sair): ");
-            id = entrada.nextInt();
-
-            if (id == 0) {
-                break;
-            }
-
-            String livro = dao.buscarLivroPorId(id);
-
-            if (livro != null) {
-                System.out.println("Livro encontrado:");
-                System.out.println(livro);
-            } else {
-                System.out.println("Livro não encontrado.");
-            }
+        if (livro != null) {
+            System.out.println("Livro encontrado:");
+            System.out.println(
+                livro.getId() + " - " +
+                livro.getTitulo() + " - " +
+                livro.getAutor() + " (" +
+                livro.getAno() + ")"
+            );
+        } else {
+            System.out.println("Livro não encontrado.");
         }
 
-        System.out.println("Programa encerrado.");
         entrada.close();
     }
 }
