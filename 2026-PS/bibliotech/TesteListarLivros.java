@@ -1,9 +1,9 @@
-
 import java.util.List;
 
 public class TesteListarLivros {
 
     public static void main(String[] args) {
+
         LivroDAO dao = new LivroDAO();
         List<String> livros = dao.listarLivros();
 
@@ -18,4 +18,3 @@ public class TesteListarLivros {
         }
     }
 }
-
