@@ -29,3 +29,12 @@ Conteúdo completo de revisão dos fundamentos da linguagem, organizado de forma
 * 💻 **Programação de Sistemas | 2026**
 
 Este material é de caráter educacional. Sinta-se livre para estudar, modificar e compartilhar o conhecimento!
+
+## 6. Como executar
+
+No terminal, dentro da pasta `bibliotech`:
+
+```bash
+javac *.java
+java TesteRequisitos
+java TelaBiblioteca
