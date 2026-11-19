@@ -1,4 +1,3 @@
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -173,5 +172,24 @@ public class LivroDAO {
         }
 
         return livros;
+    }
+
+    // NOVO MÉTODO: Atualizar caminho da capa do livro
+    public boolean atualizarCapa(int id, String caminho) {
+
+        String sql = "UPDATE livros SET capa = ? WHERE id = ?";
+
+        try (Connection conexao = Conexao.conectar();
+             PreparedStatement comando = conexao.prepareStatement(sql)) {
+
+            comando.setString(1, caminho);
+            comando.setInt(2, id);
+
+            return comando.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao atualizar capa: " + e.getMessage());
+            return false;
+        }
     }
 }
