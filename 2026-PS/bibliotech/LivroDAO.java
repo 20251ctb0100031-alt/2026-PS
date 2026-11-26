@@ -69,7 +69,7 @@ public class LivroDAO {
         }
     }
 
-    // Método da Aula 43: Listar todos os livros
+    // Método da Aula 43 e 46: Listar todos os livros
     public List<Livro> listarLivros() {
 
         List<Livro> livros = new ArrayList<>();
@@ -95,13 +95,16 @@ public class LivroDAO {
             }
 
         } catch (SQLException e) {
-            System.out.println("Erro ao listar livros: " + e.getMessage());
+            throw new PersistenciaException(
+                "Não foi possível consultar os livros.",
+                e
+            );
         }
 
         return livros;
     }
 
-    // Método da Aula 43: Buscar livro por ID
+    // Método da Aula 43 e 46: Buscar livro por ID
     public Livro buscarLivroPorId(int id) {
 
         String sql =
@@ -127,13 +130,16 @@ public class LivroDAO {
             }
 
         } catch (SQLException e) {
-            System.out.println("Erro ao buscar livro: " + e.getMessage());
+            throw new PersistenciaException(
+                "Não foi possível buscar o livro pelo ID.",
+                e
+            );
         }
 
         return null;
     }
 
-    // NOVO MÉTODO DA AULA 44: Buscar livros pelo título
+    // Método da Aula 44 e 46: Buscar livros pelo título
     public List<Livro> buscarLivrosPorTitulo(String titulo) {
 
         List<Livro> livros = new ArrayList<>();
@@ -165,16 +171,16 @@ public class LivroDAO {
             }
 
         } catch (SQLException e) {
-
-            System.out.println(
-                "Erro ao buscar livros: " + e.getMessage()
+            throw new PersistenciaException(
+                "Não foi possível buscar os livros pelo título.",
+                e
             );
         }
 
         return livros;
     }
 
-    // NOVO MÉTODO: Atualizar caminho da capa do livro
+    // Método da Aula 45: Atualizar caminho da capa do livro
     public boolean atualizarCapa(int id, String caminho) {
 
         String sql = "UPDATE livros SET capa = ? WHERE id = ?";
